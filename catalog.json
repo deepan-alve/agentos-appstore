@@ -1,5 +1,16 @@
 [
   {
+    "id": "demo-calculator",
+    "name": "Calc",
+    "tagline": "A calculator that remembers what you did",
+    "category": "productivity",
+    "url": "https://deepan-alve.github.io/agentos-appstore/apps/calculator/",
+    "generated": true,
+    "submittedBy": "amber-otter-294",
+    "score": 8.6,
+    "submittedAt": "2026-05-13T18:31:00Z"
+  },
+  {
     "id": "claude",
     "name": "Claude",
     "tagline": "A thinking partner that writes back",
