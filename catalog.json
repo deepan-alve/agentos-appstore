@@ -82,5 +82,51 @@
     "url": "https://open.spotify.com",
     "slug": "spotify",
     "color": "#1ED760"
+  },
+  {
+    "id": "discord",
+    "name": "Discord",
+    "tagline": "Where your people hang out",
+    "category": "media",
+    "url": "https://discord.com",
+    "slug": "discord",
+    "color": "#5865F2"
+  },
+  {
+    "id": "x",
+    "name": "X",
+    "tagline": "The town square",
+    "category": "reading",
+    "url": "https://x.com",
+    "slug": "x",
+    "color": "#FFFFFF",
+    "tintWhite": true
+  },
+  {
+    "id": "reddit",
+    "name": "Reddit",
+    "tagline": "The front page of the internet",
+    "category": "reading",
+    "url": "https://www.reddit.com",
+    "slug": "reddit",
+    "color": "#FF4500"
+  },
+  {
+    "id": "twitch",
+    "name": "Twitch",
+    "tagline": "Live streams, every night",
+    "category": "media",
+    "url": "https://www.twitch.tv",
+    "slug": "twitch",
+    "color": "#9146FF"
+  },
+  {
+    "id": "bluesky",
+    "name": "Bluesky",
+    "tagline": "Social, without the algorithm",
+    "category": "reading",
+    "url": "https://bsky.app",
+    "slug": "bluesky",
+    "color": "#1185FE"
   }
 ]
