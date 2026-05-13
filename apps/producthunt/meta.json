@@ -1,0 +1,9 @@
+{
+  "id": "producthunt",
+  "name": "Product Hunt",
+  "tagline": "What launched today",
+  "category": "productivity",
+  "url": "https://www.producthunt.com",
+  "slug": "producthunt",
+  "color": "#DA552F"
+}

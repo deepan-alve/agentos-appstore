@@ -1,0 +1,10 @@
+{
+  "id": "medium",
+  "name": "Medium",
+  "tagline": "Stories worth reading",
+  "category": "reading",
+  "url": "https://medium.com",
+  "slug": "medium",
+  "color": "#FFFFFF",
+  "tintWhite": true
+}

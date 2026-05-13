@@ -1,0 +1,9 @@
+{
+  "id": "bluesky",
+  "name": "Bluesky",
+  "tagline": "Social, without the algorithm",
+  "category": "reading",
+  "url": "https://bsky.app",
+  "slug": "bluesky",
+  "color": "#1185FE"
+}

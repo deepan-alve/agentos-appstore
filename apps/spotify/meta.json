@@ -1,0 +1,9 @@
+{
+  "id": "spotify",
+  "name": "Spotify",
+  "tagline": "Sound and silence, on demand",
+  "category": "media",
+  "url": "https://open.spotify.com",
+  "slug": "spotify",
+  "color": "#1ED760"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "reddit",
+  "name": "Reddit",
+  "tagline": "The front page of the internet",
+  "category": "reading",
+  "url": "https://www.reddit.com",
+  "slug": "reddit",
+  "color": "#FF4500"
+}
