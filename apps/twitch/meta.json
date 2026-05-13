@@ -1,0 +1,9 @@
+{
+  "id": "twitch",
+  "name": "Twitch",
+  "tagline": "Live streams, every night",
+  "category": "media",
+  "url": "https://www.twitch.tv",
+  "slug": "twitch",
+  "color": "#9146FF"
+}

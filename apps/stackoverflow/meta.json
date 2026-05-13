@@ -1,0 +1,9 @@
+{
+  "id": "stackoverflow",
+  "name": "Stack Overflow",
+  "tagline": "Answers from people who built it",
+  "category": "developer",
+  "url": "https://stackoverflow.com",
+  "slug": "stackoverflow",
+  "color": "#F58025"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "devdotto",
+  "name": "dev.to",
+  "tagline": "A community where developers write",
+  "category": "developer",
+  "url": "https://dev.to",
+  "slug": "devdotto",
+  "color": "#FFFFFF",
+  "tintWhite": true
+}

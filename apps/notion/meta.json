@@ -1,0 +1,10 @@
+{
+  "id": "notion",
+  "name": "Notion",
+  "tagline": "Notes, docs, and a brain you can search",
+  "category": "productivity",
+  "url": "https://notion.so",
+  "slug": "notion",
+  "color": "#FFFFFF",
+  "tintWhite": true
+}

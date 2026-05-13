@@ -1,0 +1,10 @@
+{
+  "id": "x",
+  "name": "X",
+  "tagline": "The town square",
+  "category": "reading",
+  "url": "https://x.com",
+  "slug": "x",
+  "color": "#FFFFFF",
+  "tintWhite": true
+}

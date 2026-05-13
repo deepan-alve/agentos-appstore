@@ -1,0 +1,9 @@
+{
+  "id": "claude",
+  "name": "Claude",
+  "tagline": "A thinking partner that writes back",
+  "category": "productivity",
+  "url": "https://claude.ai",
+  "slug": "claude",
+  "color": "#D97757"
+}
