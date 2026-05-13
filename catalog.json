@@ -1,5 +1,16 @@
 [
   {
+    "id": "demo-tictactoe",
+    "name": "Tic Tac Toe",
+    "tagline": "A tic tac toe game with score tracking",
+    "category": "misc",
+    "url": "https://deepan-alve.github.io/agentos-appstore/apps/tictactoe/",
+    "generated": true,
+    "submittedBy": "amber-otter-294",
+    "score": 8.7,
+    "submittedAt": "2026-05-13T17:30:00Z"
+  },
+  {
     "id": "claude",
     "name": "Claude",
     "tagline": "A thinking partner that writes back",
