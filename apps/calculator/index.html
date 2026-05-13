@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#0a0a0a" />
+<title>Calc</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --tile: rgba(255,255,255,0.05);
+    --tile-edge: rgba(255,255,255,0.09);
+    --tile-press: rgba(255,255,255,0.12);
+    --text: #ffffff;
+    --text-dim: rgba(255,255,255,0.55);
+    --text-mute: rgba(255,255,255,0.30);
+    --text-ghost: rgba(255,255,255,0.18);
+    --accent: #FFB54C;
+    --serif: 'Instrument Serif', serif;
+    --body: 'Manrope', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; }
+  html, body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    min-height: 100vh;
+    overscroll-behavior: contain;
+  }
+  body {
+    padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  header {
+    padding: 28px 24px 12px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 2.6px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-top: 10px;
+  }
+  .display {
+    flex: 1;
+    padding: 28px 24px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+  .history {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-mute);
+    letter-spacing: 0.3px;
+    text-align: right;
+    min-height: 22px;
+    word-break: break-all;
+  }
+  .result {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 64px;
+    color: var(--text);
+    letter-spacing: -1.5px;
+    text-align: right;
+    line-height: 1.05;
+    margin-top: 6px;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .result.short { font-size: 72px; }
+  .result.long { font-size: 48px; }
+  .result.xlong { font-size: 34px; }
+  .pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 0 16px 16px;
+  }
+  button.key {
+    aspect-ratio: 1;
+    border: 1px solid var(--tile-edge);
+    background: var(--tile);
+    color: var(--text);
+    border-radius: 22px;
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    transition: background 80ms ease, transform 80ms ease;
+  }
+  button.key:active {
+    background: var(--tile-press);
+    transform: scale(0.94);
+  }
+  button.op {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 24px;
+  }
+  button.op.active {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  button.mod {
+    color: var(--text-dim);
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 18px;
+  }
+  button.eq {
+    background: #ffffff;
+    color: var(--bg);
+    border-color: #ffffff;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 26px;
+  }
+  button.zero {
+    aspect-ratio: auto;
+    grid-column: span 2;
+    text-align: left;
+    padding-left: 32px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="kicker">AGENT/OS · CALCULATOR</div>
+    <h1>Calc</h1>
+  </header>
+
+  <div class="display">
+    <div class="history" id="history"></div>
+    <div class="result short" id="result">0</div>
+  </div>
+
+  <div class="pad">
+    <button class="key mod" data-act="clear">AC</button>
+    <button class="key mod" data-act="sign">+/−</button>
+    <button class="key mod" data-act="percent">%</button>
+    <button class="key op" data-op="/">÷</button>
+
+    <button class="key" data-num="7">7</button>
+    <button class="key" data-num="8">8</button>
+    <button class="key" data-num="9">9</button>
+    <button class="key op" data-op="*">×</button>
+
+    <button class="key" data-num="4">4</button>
+    <button class="key" data-num="5">5</button>
+    <button class="key" data-num="6">6</button>
+    <button class="key op" data-op="-">−</button>
+
+    <button class="key" data-num="1">1</button>
+    <button class="key" data-num="2">2</button>
+    <button class="key" data-num="3">3</button>
+    <button class="key op" data-op="+">+</button>
+
+    <button class="key zero" data-num="0">0</button>
+    <button class="key" data-num=".">.</button>
+    <button class="key eq" data-act="equals">=</button>
+  </div>
+
+<script>
+(function () {
+  let state = {
+    display: '0',         // string being shown
+    accumulator: null,    // first operand
+    op: null,             // pending operator
+    waitingForOperand: false,
+    history: '',
+  };
+
+  function format(n) {
+    if (n === null || n === undefined || isNaN(n)) return 'Error';
+    if (!isFinite(n)) return '∞';
+    const abs = Math.abs(n);
+    if (abs !== 0 && (abs > 1e12 || abs < 1e-6)) {
+      return n.toExponential(6).replace('e+', 'e').replace(/(\.\d*?)0+e/, '$1e');
+    }
+    const rounded = Math.round(n * 1e10) / 1e10;
+    return String(rounded);
+  }
+
+  function applyDisplaySize() {
+    const r = document.getElementById('result');
+    const len = r.textContent.length;
+    r.classList.remove('short', 'long', 'xlong');
+    if (len > 14) r.classList.add('xlong');
+    else if (len > 9) r.classList.add('long');
+    else r.classList.add('short');
+  }
+
+  function render() {
+    document.getElementById('result').textContent = state.display;
+    document.getElementById('history').textContent = state.history;
+    document.querySelectorAll('.op').forEach(b => {
+      b.classList.toggle('active', !!state.op && state.waitingForOperand && b.dataset.op === state.op);
+    });
+    applyDisplaySize();
+  }
+
+  function inputDigit(d) {
+    if (state.waitingForOperand) {
+      state.display = d === '.' ? '0.' : d;
+      state.waitingForOperand = false;
+    } else {
+      if (d === '.') {
+        if (!state.display.includes('.')) state.display += '.';
+      } else {
+        state.display = state.display === '0' ? d : (state.display.length < 12 ? state.display + d : state.display);
+      }
+    }
+    render();
+  }
+
+  function compute(a, b, op) {
+    switch (op) {
+      case '+': return a + b;
+      case '-': return a - b;
+      case '*': return a * b;
+      case '/': return b === 0 ? NaN : a / b;
+      default: return b;
+    }
+  }
+
+  function pressOp(op) {
+    const current = parseFloat(state.display);
+    if (state.accumulator === null) {
+      state.accumulator = current;
+    } else if (state.op && !state.waitingForOperand) {
+      const result = compute(state.accumulator, current, state.op);
+      state.accumulator = result;
+      state.display = format(result);
+    }
+    state.op = op;
+    state.waitingForOperand = true;
+    const sym = { '+': '+', '-': '−', '*': '×', '/': '÷' }[op];
+    state.history = format(state.accumulator) + ' ' + sym;
+    render();
+  }
+
+  function pressEquals() {
+    if (state.op === null || state.accumulator === null) return;
+    const current = parseFloat(state.display);
+    const result = compute(state.accumulator, current, state.op);
+    const sym = { '+': '+', '-': '−', '*': '×', '/': '÷' }[state.op];
+    state.history = format(state.accumulator) + ' ' + sym + ' ' + format(current) + ' =';
+    state.display = format(result);
+    state.accumulator = result;
+    state.op = null;
+    state.waitingForOperand = true;
+    render();
+  }
+
+  function pressClear() {
+    state.display = '0';
+    state.accumulator = null;
+    state.op = null;
+    state.waitingForOperand = false;
+    state.history = '';
+    render();
+  }
+
+  function pressSign() {
+    if (state.display === '0') return;
+    state.display = state.display.startsWith('-') ? state.display.slice(1) : '-' + state.display;
+    render();
+  }
+
+  function pressPercent() {
+    state.display = format(parseFloat(state.display) / 100);
+    render();
+  }
+
+  document.querySelectorAll('.key').forEach(b => {
+    b.addEventListener('click', () => {
+      if (b.dataset.num !== undefined) inputDigit(b.dataset.num);
+      else if (b.dataset.op !== undefined) pressOp(b.dataset.op);
+      else if (b.dataset.act === 'equals') pressEquals();
+      else if (b.dataset.act === 'clear') pressClear();
+      else if (b.dataset.act === 'sign') pressSign();
+      else if (b.dataset.act === 'percent') pressPercent();
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (/^\d$/.test(e.key)) inputDigit(e.key);
+    else if (e.key === '.') inputDigit('.');
+    else if (e.key === '+' || e.key === '-') pressOp(e.key);
+    else if (e.key === '*') pressOp('*');
+    else if (e.key === '/') { e.preventDefault(); pressOp('/'); }
+    else if (e.key === 'Enter' || e.key === '=') pressEquals();
+    else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') pressClear();
+    else if (e.key === '%') pressPercent();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
