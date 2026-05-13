@@ -1,5 +1,16 @@
 [
   {
+    "id": "demo-todo",
+    "name": "Tasks",
+    "tagline": "Add it, check it, it stays",
+    "category": "productivity",
+    "url": "https://deepan-alve.github.io/agentos-appstore/apps/todo/",
+    "generated": true,
+    "submittedBy": "amber-otter-294",
+    "score": 9.2,
+    "submittedAt": "2026-05-13T18:30:00Z"
+  },
+  {
     "id": "claude",
     "name": "Claude",
     "tagline": "A thinking partner that writes back",
